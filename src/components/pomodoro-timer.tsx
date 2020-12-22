@@ -1,5 +1,6 @@
 import React from 'react';
 import { useInterval } from '../hooks/use-interval';
+import { secondsToTime } from '../utils/seconds-to-time';
 
 interface Props {
   defaultPomodoroTime: number;
@@ -14,7 +15,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
   return (
     <div>
-      <h1>{mainTime}</h1>
+      <h1>{secondsToTime(mainTime)}</h1>
     </div>
   );
 }
