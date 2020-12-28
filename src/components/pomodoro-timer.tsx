@@ -1,4 +1,3 @@
-import { time } from 'console';
 import React, { useEffect } from 'react';
 import { useInterval } from '../hooks/use-interval';
 import { Button } from './button';
@@ -39,7 +38,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
       <div className="controls">
         <Button text="Work" onClick={() => configureWork()}></Button>
-        <Button text="teste" onClick={() => console.log(1)}></Button>
+        <Button text="Rest" onClick={() => console.log(1)}></Button>
         <Button
           text={timeCounting ? 'Pause' : 'Play'}
           onClick={() => setTimeCounting(!timeCounting)}
