@@ -27,7 +27,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
   useEffect(() => {
     if (working) document.body.classList.add('working');
     if (resting) document.body.classList.remove('working');
-  }, [working]);
+  }, [working, resting]);
 
   useInterval(
     () => {
