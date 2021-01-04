@@ -79,9 +79,23 @@ export function PomodoroTimer(props: Props): JSX.Element {
     ],
   );
 
+  const configurePaused = () => {
+    if (timeCounting) {
+      setTimeCounting(!timeCounting);
+      document.body.classList.add('paused');
+    } else {
+      setTimeCounting(!timeCounting);
+      document.body.classList.remove('paused');
+    }
+  };
+
   useEffect(() => {
-    if (working) document.body.classList.add('working');
-    if (resting) document.body.classList.remove('working');
+    if (working) {
+      document.body.classList.remove('paused');
+      document.body.classList.add('working');
+    }
+
+    if (resting) document.body.removeAttribute('class');
     if (mainTime > 0) return;
 
     if (working && cyclesQtdManager.length > 0) {
@@ -121,7 +135,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
         <Button
           className={!working && !resting ? 'hidden' : ''}
           text={timeCounting ? 'Pause' : 'Play'}
-          onClick={() => setTimeCounting(!timeCounting)}
+          onClick={() => configurePaused()}
         ></Button>
       </div>
 

@@ -62,9 +62,16 @@ body {
 .working .pomodoro button {
   background: #EF5D50;
   color: #FFF;
-
 }
 
 .pomodoro .details {
   margin: 20px 0;
+}
+
+.paused {
+  background: #efd250;
+}
+
+.paused .pomodoro button {
+  background: #efd250;
 }
