@@ -73,5 +73,6 @@ body {
 }
 
 .paused .pomodoro button {
+  color: #000;
   background: #efd250;
 }

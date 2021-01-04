@@ -20,6 +20,7 @@ interface Props {
 }
 
 export function PomodoroTimer(props: Props): JSX.Element {
+  const [title, setTitle] = React.useState('Bem-vindo(a) ao Pomodoro');
   const [mainTime, setMainTime] = React.useState(props.pomodoroTime);
   const [timeCounting, setTimeCounting] = React.useState(false);
   const [working, setWorking] = React.useState(false);
@@ -27,7 +28,6 @@ export function PomodoroTimer(props: Props): JSX.Element {
   const [cyclesQtdManager, setCyclesQtdManager] = React.useState(
     new Array(props.cycles - 1).fill(true),
   );
-
   const [completedCycles, setCompletedCycles] = React.useState(0);
   const [fullWorkingTime, setFullWorkingTime] = React.useState(0);
   const [numberOfPomodoros, setNumberOfPomodoros] = React.useState(0);
@@ -41,6 +41,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
   );
 
   const configureWork = useCallback(() => {
+    setTitle('Voce está: Trabalhando');
     setTimeCounting(true);
     setWorking(true);
     setResting(false);
@@ -57,6 +58,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
   const configureRest = useCallback(
     (long: boolean) => {
+      setTitle('Voce está: Descansando');
       setTimeCounting(true);
       setWorking(false);
       setResting(true);
@@ -80,6 +82,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
   );
 
   const configurePaused = () => {
+    // setTitle('O pomodoro está pausado');
     if (timeCounting) {
       setTimeCounting(!timeCounting);
       document.body.classList.add('paused');
@@ -90,6 +93,12 @@ export function PomodoroTimer(props: Props): JSX.Element {
   };
 
   useEffect(() => {
+    if (working) {
+      setTitle('Voce está: trabalhando');
+    } else if (resting) {
+      setTitle('Voce está: descansando');
+    }
+
     if (working) {
       document.body.classList.remove('paused');
       document.body.classList.add('working');
@@ -126,7 +135,7 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
   return (
     <div className="pomodoro">
-      <h2>Voce está: {working ? 'Trabalhando' : 'Descansando'}</h2>
+      <h2>{title}</h2>
       <Timer mainTime={mainTime} />
 
       <div className="controls">
