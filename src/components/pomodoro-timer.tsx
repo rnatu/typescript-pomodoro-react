@@ -94,12 +94,6 @@ export function PomodoroTimer(props: Props): JSX.Element {
 
   useEffect(() => {
     if (working) {
-      setTitle('Voce está: trabalhando');
-    } else if (resting) {
-      setTitle('Voce está: descansando');
-    }
-
-    if (working) {
       document.body.classList.remove('paused');
       document.body.classList.add('working');
     }
